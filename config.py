@@ -5,6 +5,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 
 DATA_DIR = Path("data")
 DATA_PATH = (PROJECT_ROOT / DATA_DIR).resolve()
+# Ensure data folder is created if not existing
+DATA_PATH.mkdir(exist_ok=True)
 
 DB_FILE = Path("library.sqlite")
 DB_FILE_PATH = (DATA_PATH / DB_FILE).resolve()
