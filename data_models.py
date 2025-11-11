@@ -33,6 +33,4 @@ class Book(db.Model):
         return f"<Book {self.title}>"
 
     def __str__(self):
-        if self.author:
-            return f"{self.title} ({self.publication_year}) by {self.author.name}"
         return f"{self.title} ({self.publication_year})"
