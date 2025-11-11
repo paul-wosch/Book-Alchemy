@@ -38,8 +38,8 @@ def add_book():
     if request.method == "POST":
         title = request.form["title"]
         isbn = request.form["isbn"]
-        year = request.form["year"]
-        author_id = request.form["author_id"]
+        year = int(request.form["year"])
+        author_id = int(request.form["author_id"])
 
         new_book = Book(title=title, isbn=isbn, publication_year=year, author_id=author_id)
         db.session.add(new_book)

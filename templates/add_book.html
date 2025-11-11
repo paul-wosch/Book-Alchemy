@@ -19,7 +19,7 @@
       <label for="author">Author:</label>
       <select id="author" name="author_id">
         {% for author in authors %}
-          <option value="{{ author.id }}">{{ author }}</option>
+          <option value="{{ author.author_id }}">{{ author }}</option>
         {% endfor %}
       </select><br><br>
       <input type="submit" value="Add Book">
