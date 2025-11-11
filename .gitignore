@@ -1,5 +1,6 @@
 # sqlite database files
 data/*.sqlite3
+data/*.sqlite
 
 # MacOS hidden system file from finder application
 .DS_Store
