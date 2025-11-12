@@ -18,6 +18,15 @@ def home():
     return render_template("home.html", books=books)
 
 
+@app.route("/book/<int:book_id>")
+def single_book(book_id):
+    book = Book.query.get(book_id)
+    if book is None:
+        # Handle the case where the book is not found
+        return "Book not found", 404
+    return render_template('single_book.html', book=book)
+
+
 @app.route("/add_author", methods=["GET", "POST"])
 def add_author():
     if request.method == "POST":

@@ -1,0 +1,15 @@
+<form action="/add_book" method="POST">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" required><br><br>
+  <label for="isbn">ISBN:</label>
+  <input type="text" id="isbn" name="isbn"><br><br>
+  <label for="year">Publication Year:</label>
+  <input type="number" id="year" name="year"><br><br>
+  <label for="author">Author:</label>
+  <select id="author" name="author_id">
+    {% for author in authors %}
+      <option value="{{ author.author_id }}">{{ author }}</option>
+    {% endfor %}
+  </select><br><br>
+  <input type="submit" value="Add Book">
+</form>

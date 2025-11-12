@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  </head>
-  <body>
-
-    {% for book in books %}
-    <div>
-        <h3>{{ book }}</h3>
-        <p><em>written by {{ book.author }}</em></p>
-        <img alt="" src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-M.jpg" />
-    </div>
-    {% endfor %}
-
-  </body>
-</html>
+{%- extends "base.html" %}
+{%- block title %}Home{% endblock %}
+{%- block content %}
+{%- for book in books %}
+{%- include 'book.html' %}
+{%- endfor %}
+{%- endblock %}
