@@ -1,0 +1,58 @@
+/* common.css */
+
+/* Base styling for the theme toggle button */
+.btn-theme {
+    border: 2px solid transparent;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+/* Header wrapper */
+.site-header {
+    background-color: #343a40; /* overridden by theme files */
+    color: white;
+    padding: 1rem 0; /* vertical padding only */
+}
+
+/* Centered container, aligns with main content */
+.header-container {
+    max-width: 900px; /* match main’s max-width */
+    margin: 0 auto;   /* center horizontally */
+    padding: 0 1rem;  /* left/right breathing room */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Left side: title + nav stacked */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.header-left nav {
+    margin-top: 0.5rem;
+}
+
+/* Right side: toggle button */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Shared main content layout */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem; /* ensures left/right spacing in all themes */
+}

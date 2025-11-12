@@ -9,14 +9,14 @@
 
     <div class="book-actions">
         <!-- Update Book -->
-        <a href="{{ url_for('update_book', book_id=book.book_id) }}" class="btn btn-edit">Edit Book</a>
+        <a href="{{ url_for('update_book', book_id=book.book_id) }}" class="btn btn-edit">✏️ Edit Book</a>
 
         <!-- Delete Book -->
         <form action="{{ url_for('delete_book', book_id=book.book_id) }}" method="POST" style="display:inline;">
-            <input type="submit" value="Delete Book" class="btn btn-delete">
+            <input type="submit" value="🗑️ Delete Book" class="btn btn-delete">
         </form>
 
         <!-- Update Author -->
-        <a href="{{ url_for('update_author', author_id=book.author.author_id) }}" class="btn btn-edit">Edit Author</a>
+        <a href="{{ url_for('update_author', author_id=book.author.author_id) }}" class="btn btn-edit">✏️ Edit Author</a>
     </div>
 </div>

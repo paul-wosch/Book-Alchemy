@@ -1,0 +1,179 @@
+/* General page layout */
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    background-color: #fdfdfd;
+    color: #444;
+}
+
+/* Header and navbar */
+header {
+    background-color: #e3f2fd; /* light pastel blue */
+    color: #333;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #90caf9;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #1976d2; /* deeper blue accent */
+}
+
+nav {
+    margin-top: 0.5rem;
+}
+
+nav a {
+    color: #1976d2;
+    text-decoration: none;
+    margin: 0 0.5rem;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+/* Headings */
+h2 {
+    border-bottom: 2px solid #ba68c8; /* pastel purple accent */
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    color: #6a1b9a;
+}
+
+/* Book entry cards */
+.book-entry {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.book-entry h3 a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+.book-entry h3 a:hover {
+    text-decoration: underline;
+}
+
+.book-entry img {
+    max-height: 200px;
+    margin-top: 0.5rem;
+    border-radius: 6px;
+}
+
+/* Action buttons with icons */
+.book-actions {
+    margin-top: 0.8rem;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 0.9rem;
+    margin-right: 0.5rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-edit {
+    background-color: #81d4fa; /* pastel blue */
+    color: #0d47a1;
+    border: none;
+}
+
+.btn-edit:hover {
+    background-color: #4fc3f7;
+}
+
+.btn-delete {
+    background-color: #f8bbd0; /* pastel pink */
+    color: #880e4f;
+    border: none;
+}
+
+.btn-delete:hover {
+    background-color: #f48fb1;
+}
+
+/* Forms */
+.form {
+    background: #fce4ec; /* very light pink background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+.form label {
+    font-weight: bold;
+    display: block;
+    margin-top: 0.8rem;
+    color: #6a1b9a;
+}
+
+.form input[type="text"],
+.form input[type="date"],
+.form input[type="number"],
+.form select,
+.form textarea {
+    width: 100%;
+    padding: 0.6rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: #fff;
+}
+
+.form input[type="submit"],
+.form .button {
+    margin-top: 1rem;
+    background-color: #aed581; /* pastel green */
+    color: #33691e;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.form input[type="submit"]:hover,
+.form .button:hover {
+    background-color: #9ccc65;
+}
+
+/* Footer */
+footer {
+    background-color: #e3f2fd;
+    color: #333;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+    border-top: 2px solid #90caf9;
+}
+
+.theme-pastel .btn-theme {
+    background-color: #e3f2fd;
+    color: #6a1b9a;
+    border-color: #6a1b9a;
+}
+.theme-pastel .btn-theme:hover {
+    background-color: #ba68c8;
+    color: #fff;
+}
+
+main {
+    background-color: #fdfdfd; /* optional pastel background */
+}

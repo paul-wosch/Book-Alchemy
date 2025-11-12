@@ -1,7 +1,15 @@
-{%- extends "base.html" %}
-{%- block title %}Home{% endblock %}
-{%- block content %}
-{%- for book in books %}
-{%- include 'book.html' %}
-{%- endfor %}
-{%- endblock %}
+{% extends "base.html" %}
+
+{% block title %}My favorite books{% endblock %}
+{% block heading %}My Favorite Books{% endblock %}
+{% block subheading %}Library Overview{% endblock %}
+
+{% block content %}
+  <div class="book-list">
+    {% for book in books %}
+      {% include "book.html" %}
+    {% else %}
+      <p>No books found. Add one to get started!</p>
+    {% endfor %}
+  </div>
+{% endblock %}
