@@ -104,5 +104,13 @@ def update_book(book_id):
     )
 
 
+@app.route("/book/<int:book_id>/delete", methods=["POST"])
+def delete_book(book_id):
+    book = Book.query.get_or_404(book_id)
+    db.session.delete(book)
+    db.session.commit()
+    return "Book deleted successfully!"
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5002)
