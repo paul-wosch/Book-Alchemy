@@ -168,3 +168,12 @@ footer {
     color: #343a40;
 }
 
+.sort-link {
+    background-color: #444;
+    color: #ffc107;
+}
+.sort-link:hover {
+    background-color: #ffc107;
+    color: #343a40;
+}
+

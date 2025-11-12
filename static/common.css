@@ -56,3 +56,33 @@ main {
     margin: 2rem auto;
     padding: 1rem; /* ensures left/right spacing in all themes */
 }
+
+/* Sorting links container */
+.sort-links {
+    margin-bottom: 1.5rem;
+    text-align: right; /* align to the right above the book list */
+}
+
+/* Individual sort link */
+.sort-link {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Default neutral style */
+.sort-link {
+    background-color: #eee;
+    color: #333;
+}
+
+/* Hover effect */
+.sort-link:hover {
+    background-color: #007BFF;
+    color: #fff;
+}

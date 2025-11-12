@@ -177,3 +177,12 @@ footer {
 main {
     background-color: #fdfdfd; /* optional pastel background */
 }
+
+.sort-link {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+.sort-link:hover {
+    background-color: #ba68c8;
+    color: #fff;
+}

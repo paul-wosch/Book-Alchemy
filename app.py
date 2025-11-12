@@ -112,5 +112,16 @@ def delete_book(book_id):
     return "Book deleted successfully!"
 
 
+@app.route("/sort/<field>")
+def sort_books(field):
+    if field == "title":
+        books = Book.query.order_by(Book.title).all()
+    elif field == "author":
+        books = Book.query.join(Author).order_by(Author.name).all()
+    else:
+        books = Book.query.all()
+    return render_template("home.html", books=books)
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5002)

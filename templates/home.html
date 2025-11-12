@@ -5,6 +5,12 @@
 {% block subheading %}Library Overview{% endblock %}
 
 {% block content %}
+
+  <div class="sort-links">
+    <a href="/sort/title" class="sort-link">Sort by Title</a>
+    <a href="/sort/author" class="sort-link">Sort by Author</a>
+  </div>
+
   <div class="book-list">
     {% for book in books %}
       {% include "book.html" %}
