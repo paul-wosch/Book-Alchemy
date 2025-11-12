@@ -18,7 +18,7 @@ class Author(db.Model):
         """Return readable string for author."""
         if self.birth_date and self.date_of_death:
             return f"{self.name} ({self.birth_date} – {self.date_of_death})"
-        elif self.birth_date:
+        if self.birth_date:
             return f"{self.name} (born {self.birth_date})"
         return self.name
 
