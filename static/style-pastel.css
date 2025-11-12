@@ -178,6 +178,16 @@ main {
     background-color: #fdfdfd; /* optional pastel background */
 }
 
+.search-form input[type="submit"].sort-link {
+    background-color: #e3f2fd; /* pastel blue */
+    color: #1976d2;            /* deep blue accent */
+    border: none;
+}
+.search-form input[type="submit"].sort-link:hover {
+    background-color: #ba68c8; /* pastel purple */
+    color: #fff;
+}
+
 .sort-link {
     background-color: #e3f2fd;
     color: #1976d2;

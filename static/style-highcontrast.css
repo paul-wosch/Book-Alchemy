@@ -170,6 +170,16 @@ main {
     color: #fff;
 }
 
+.search-form input[type="submit"].sort-link {
+    background-color: #000;
+    color: #ff0;              /* bright yellow */
+    border: 2px solid #fff;
+}
+.search-form input[type="submit"].sort-link:hover {
+    background-color: #fff;
+    color: #000;
+}
+
 .sort-link {
     background-color: #000;
     color: #ff0;

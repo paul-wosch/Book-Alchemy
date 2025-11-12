@@ -123,5 +123,12 @@ def sort_books(field):
     return render_template("home.html", books=books)
 
 
+@app.route("/search", methods=["GET"])
+def search():
+    term = request.args.get("q", "")
+    books = Book.query.filter(Book.title.like(f"%{term}%")).all()
+    return render_template("home.html", books=books)
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5002)

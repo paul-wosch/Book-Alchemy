@@ -168,6 +168,16 @@ footer {
     color: #343a40;
 }
 
+.search-form input[type="submit"].sort-link {
+    background-color: #444;
+    color: #ffc107;
+    border: none;
+}
+.search-form input[type="submit"].sort-link:hover {
+    background-color: #ffc107;
+    color: #343a40;
+}
+
 .sort-link {
     background-color: #444;
     color: #ffc107;

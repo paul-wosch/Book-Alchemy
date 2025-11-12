@@ -57,13 +57,28 @@ main {
     padding: 1rem; /* ensures left/right spacing in all themes */
 }
 
-/* Sorting links container */
-.sort-links {
+/* Toolbar: search left, sort right */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 1.5rem;
-    text-align: right; /* align to the right above the book list */
 }
 
-/* Individual sort link */
+/* Search form inline */
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Search input field */
+.search-form input[type="text"] {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+/* Sort links and search button share same style */
 .sort-link {
     display: inline-block;
     margin-left: 0.5rem;
@@ -73,16 +88,5 @@ main {
     font-size: 0.9rem;
     font-weight: bold;
     transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Default neutral style */
-.sort-link {
-    background-color: #eee;
-    color: #333;
-}
-
-/* Hover effect */
-.sort-link:hover {
-    background-color: #007BFF;
-    color: #fff;
+    cursor: pointer;
 }
