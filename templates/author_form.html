@@ -1,9 +1,28 @@
-  <form action="/add_author" method="POST">
-    <label for="name">Author Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    <label for="birthdate">Birthdate:</label>
-    <input type="date" id="birthdate" name="birthdate" required><br><br>
-    <label for="date_of_death">Date of Death:</label>
-    <input type="date" id="date_of_death" name="date_of_death"><br><br>
-    <input type="submit" value="Add Author">
+{%- if author is not defined %}
+{%- set action_url = url_for('add_author') %}
+{%- set author_name = "" %}
+{%- set author_birthdate = "" %}
+{%- set author_deathdate = "" %}
+{%- set submit_action = "Add Author" %}
+{%- else %}
+{%- set action_url = url_for('update_author', author_id=author.author_id) %}
+{%- set author_name = author.name %}
+{%- set author_birthdate = author.birth_date %}
+{%- set author_deathdate = author.date_of_death %}
+{%- set submit_action = "Update Author" %}
+{%- endif %}
+
+<div id="add-update-author-form-wrapper" class="form">
+  <form action="{{ action_url }}" method="POST">
+    <label for="name">Author Name:</label><br>
+    <input type="text" id="name" name="name" value="{{ author_name }}" required><br><br>
+
+    <label for="birthdate">Birthdate:</label><br>
+    <input type="date" id="birthdate" name="birthdate" value="{{ author_birthdate }}"><br><br>
+
+    <label for="date_of_death">Date of Death:</label><br>
+    <input type="date" id="date_of_death" name="date_of_death" value="{{ author_deathdate }}"><br><br>
+
+    <input class="button" type="submit" value="{{ submit_action }}">
   </form>
+</div>

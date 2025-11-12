@@ -42,6 +42,25 @@ def add_author():
     return render_template("add_author.html")
 
 
+@app.route("/author/<int:author_id>/update", methods=["GET", "POST"])
+def update_author(author_id):
+    author = Author.query.get_or_404(author_id)
+
+    if request.method == "POST":
+        author.name = request.form["name"]
+        author.birth_date = request.form.get("birthdate")
+        author.date_of_death = request.form.get("date_of_death")
+
+        db.session.commit()
+        return "Author updated successfully!"
+
+    return render_template(
+        "update_author.html",
+        author=author,
+        subtitle="Update Author"
+    )
+
+
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
@@ -57,6 +76,32 @@ def add_book():
 
     authors = Author.query.all()
     return render_template("add_book.html", authors=authors)
+
+
+@app.route("/book/<int:book_id>/update", methods=["GET", "POST"])
+def update_book(book_id):
+    book = Book.query.get_or_404(book_id)
+
+    if request.method == "POST":
+        book.title = request.form["title"]
+        book.isbn = request.form["isbn"]
+        # handle optional year safely
+        year_str = request.form.get("year")
+        book.publication_year = int(year_str) if year_str else None
+        # author_id comes from dropdown
+        author_id_str = request.form.get("author_id")
+        book.author_id = int(author_id_str) if author_id_str else None
+
+        db.session.commit()
+        return "Book updated successfully!"
+
+    authors = Author.query.all()
+    return render_template(
+        "update_book.html",
+        book=book,
+        authors=authors,
+        subtitle="Update Book"
+    )
 
 
 if __name__ == "__main__":
