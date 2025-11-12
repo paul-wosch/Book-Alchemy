@@ -14,21 +14,23 @@ with app.app_context():
 
 @app.route("/")
 def home():
+    """Render home page with all books."""
     books = Book.query.all()
     return render_template("home.html", books=books)
 
 
 @app.route("/book/<int:book_id>")
 def single_book(book_id):
+    """Render page for a single book."""
     book = Book.query.get(book_id)
     if book is None:
-        # Handle the case where the book is not found
         return "Book not found", 404
     return render_template('single_book.html', book=book)
 
 
 @app.route("/add_author", methods=["GET", "POST"])
 def add_author():
+    """Add a new author."""
     if request.method == "POST":
         name = request.form["name"]
         birthdate = request.form["birthdate"]
@@ -44,6 +46,7 @@ def add_author():
 
 @app.route("/author/<int:author_id>/update", methods=["GET", "POST"])
 def update_author(author_id):
+    """Update an existing author."""
     author = Author.query.get_or_404(author_id)
 
     if request.method == "POST":
@@ -63,6 +66,7 @@ def update_author(author_id):
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
+    """Add a new book."""
     if request.method == "POST":
         title = request.form["title"]
         isbn = request.form["isbn"]
@@ -80,15 +84,14 @@ def add_book():
 
 @app.route("/book/<int:book_id>/update", methods=["GET", "POST"])
 def update_book(book_id):
+    """Update an existing book."""
     book = Book.query.get_or_404(book_id)
 
     if request.method == "POST":
         book.title = request.form["title"]
         book.isbn = request.form["isbn"]
-        # handle optional year safely
         year_str = request.form.get("year")
         book.publication_year = int(year_str) if year_str else None
-        # author_id comes from dropdown
         author_id_str = request.form.get("author_id")
         book.author_id = int(author_id_str) if author_id_str else None
 
@@ -106,6 +109,7 @@ def update_book(book_id):
 
 @app.route("/book/<int:book_id>/delete", methods=["POST"])
 def delete_book(book_id):
+    """Delete a book."""
     book = Book.query.get_or_404(book_id)
     db.session.delete(book)
     db.session.commit()
@@ -114,6 +118,7 @@ def delete_book(book_id):
 
 @app.route("/sort/<field>")
 def sort_books(field):
+    """Sort books by given field."""
     if field == "title":
         books = Book.query.order_by(Book.title).all()
     elif field == "author":
@@ -125,6 +130,7 @@ def sort_books(field):
 
 @app.route("/search", methods=["GET"])
 def search():
+    """Search books by title."""
     term = request.args.get("q", "")
     books = Book.query.filter(Book.title.like(f"%{term}%")).all()
     return render_template("home.html", books=books)
