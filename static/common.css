@@ -90,3 +90,51 @@ main {
     transition: background-color 0.2s ease, color 0.2s ease;
     cursor: pointer;
 }
+
+/* Flash message popup */
+#flash-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+/* Base flash message */
+.flash-message {
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin-top: 0.5rem;
+    color: #fff;
+    animation: fadeout 0.5s ease-in-out forwards;
+    animation-delay: 3s;
+}
+
+/* Success (green) */
+.flash-message.success {
+    background-color: #28a745;
+}
+
+/* Error (red) */
+.flash-message.error {
+    background-color: #dc3545;
+}
+
+/* Info (blue) */
+.flash-message.info {
+    background-color: #007bff;
+}
+
+/* Warning (yellow/orange) */
+.flash-message.warning {
+    background-color: #ffc107; /* Bootstrap-style amber */
+    color: #212529;            /* dark text for contrast */
+}
+
+@keyframes fadeout {
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}

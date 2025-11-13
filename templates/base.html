@@ -25,8 +25,17 @@
         </div>
     </header>
     <main>
-        <h2>{%- block subheading %}{% endblock %}</h2>
+        <h2>{%- block subheading %}{%- endblock %}</h2>
         {%- block content %}{%- endblock %}
+        {%- with messages = get_flashed_messages(with_categories=true) %}
+          {%- if messages %}
+            <div id="flash-container">
+              {%- for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+              {%- endfor %}
+            </div>
+          {%- endif %}
+        {%- endwith %}
     </main>
     <footer>
         {%- block footer %}© 2025 My Site{%- endblock %}
@@ -63,6 +72,14 @@
             currentIndex = (currentIndex + 1) % themes.length;
             applyTheme(currentIndex);
         });
+    </script>
+    <script>
+      setTimeout(() => {
+        const flash = document.getElementById('flash-container');
+        if (flash) {
+          flash.remove();
+        }
+      }, 4000); // remove after 4s
     </script>
 </body>
 </html>
