@@ -1,0 +1,39 @@
+{%- if book is not defined %}
+{%- set action_url = url_for('add_book') %}
+{%- set book_title = "" %}
+{%- set book_isbn = "" %}
+{%- set book_year = "" %}
+{%- set book_author_id = "" %}
+{%- set submit_action = "Add Book" %}
+{%- else %}
+{%- set action_url = url_for('update_book', book_id=book.book_id) %}
+{%- set book_title = book.title %}
+{%- set book_isbn = book.isbn %}
+{%- set book_year = book.publication_year %}
+{%- set book_author_id = book.author_id %}
+{%- set submit_action = "Update Book" %}
+{%- endif %}
+<div id="add-update-book-form-wrapper" class="form">
+  <form action="{{ action_url }}" method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" value="{{ book_title }}" required><br><br>
+
+    <label for="isbn">ISBN:</label><br>
+    <input type="text" id="isbn" name="isbn" value="{{ book_isbn }}"><br><br>
+
+    <label for="year">Publication Year:</label><br>
+    <input type="number" id="year" name="year" value="{{ book_year }}"><br><br>
+
+    <label for="author">Author:</label><br>
+    <select id="author" name="author_id" required>
+        {% for author in authors %}
+          <option value="{{ author.author_id }}"
+            {% if author.author_id == book_author_id %}selected{% endif %}>
+            {{ author }}
+          </option>
+        {% endfor %}
+    </select><br><br>
+
+    <input class="button" type="submit" value="{{ submit_action }}">
+  </form>
+</div>

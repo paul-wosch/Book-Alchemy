@@ -1,0 +1,140 @@
+/* common.css */
+
+/* Base styling for the theme toggle button */
+.btn-theme {
+    border: 2px solid transparent;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    vertical-align: middle;
+}
+
+/* Header wrapper */
+.site-header {
+    background-color: #343a40; /* overridden by theme files */
+    color: white;
+    padding: 1rem 0; /* vertical padding only */
+}
+
+/* Centered container, aligns with main content */
+.header-container {
+    max-width: 900px; /* match main’s max-width */
+    margin: 0 auto;   /* center horizontally */
+    padding: 0 1rem;  /* left/right breathing room */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Left side: title + nav stacked */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.header-left h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.header-left nav {
+    margin-top: 0.5rem;
+}
+
+/* Right side: toggle button */
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Shared main content layout */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem; /* ensures left/right spacing in all themes */
+}
+
+/* Toolbar: search left, sort right */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Search form inline */
+.search-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Search input field */
+.search-form input[type="text"] {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+/* Sort links and search button share same style */
+.sort-link {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+/* Flash message popup */
+#flash-container {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+/* Base flash message */
+.flash-message {
+    padding: 0.8rem 1.2rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin-top: 0.5rem;
+    color: #fff;
+    animation: fadeout 0.5s ease-in-out forwards;
+    animation-delay: 3s;
+}
+
+/* Success (green) */
+.flash-message.success {
+    background-color: #28a745;
+}
+
+/* Error (red) */
+.flash-message.error {
+    background-color: #dc3545;
+}
+
+/* Info (blue) */
+.flash-message.info {
+    background-color: #007bff;
+}
+
+/* Warning (yellow/orange) */
+.flash-message.warning {
+    background-color: #ffc107; /* Bootstrap-style amber */
+    color: #212529;            /* dark text for contrast */
+}
+
+@keyframes fadeout {
+    to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}

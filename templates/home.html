@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}My favorite books{% endblock %}
+{% block heading %}My Favorite Books{% endblock %}
+{% block subheading %}Library Overview{% endblock %}
+
+{% block content %}
+
+  <div class="toolbar">
+    <form action="/search" method="GET" class="search-form">
+      <input type="text" name="q" placeholder="Search books">
+      <input type="submit" value="Search" class="sort-link">
+    </form>
+
+    <div class="sort-links">
+      <a href="/sort/title" class="sort-link">Sort by Title</a>
+      <a href="/sort/author" class="sort-link">Sort by Author</a>
+    </div>
+  </div>
+
+  <div class="book-list">
+    {% for book in books %}
+      {% include "book.html" %}
+    {% else %}
+      <p>No books found. Add one to get started!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%- block title %}My favorite books{%- endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='common.css') }}">
+    <!-- Default theme -->
+    <link id="theme-link" rel="stylesheet" href="{{ url_for('static', filename='style-dark.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-container">
+            <div class="header-left">
+                <h1>{%- block heading %}My favorite books{% endblock %}</h1>
+                <nav>
+                    <a href="/">Home</a> |
+                    <a href="/add_book">Add Book</a> |
+                    <a href="/add_author">Add Author</a>
+                </nav>
+            </div>
+            <div class="header-right">
+                <button id="theme-toggle" class="btn btn-theme" title="Switch theme">🌙</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <h2>{%- block subheading %}{%- endblock %}</h2>
+        {%- block content %}{%- endblock %}
+        {%- with messages = get_flashed_messages(with_categories=true) %}
+          {%- if messages %}
+            <div id="flash-container">
+              {%- for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+              {%- endfor %}
+            </div>
+          {%- endif %}
+        {%- endwith %}
+    </main>
+    <footer>
+        {%- block footer %}© 2025 My Site{%- endblock %}
+    </footer>
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeLink = document.getElementById('theme-link');
+
+        const themes = [
+            { href: "{{ url_for('static', filename='style-dark.css') }}", icon: "🌙", bodyClass: "theme-dark" },
+            { href: "{{ url_for('static', filename='style-pastel.css') }}", icon: "☀️", bodyClass: "theme-pastel" },
+            { href: "{{ url_for('static', filename='style-highcontrast.css') }}", icon: "⚫️", bodyClass: "theme-highcontrast" }
+        ];
+
+        let currentIndex = 0;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            const foundIndex = themes.findIndex(t => t.href === savedTheme);
+            currentIndex = foundIndex !== -1 ? foundIndex : 0;
+        }
+
+        function applyTheme(index) {
+            themeLink.href = themes[index].href;
+            toggleBtn.textContent = themes[index].icon;
+            document.body.className = themes[index].bodyClass;
+            localStorage.setItem('theme', themes[index].href);
+        }
+
+        applyTheme(currentIndex);
+
+        toggleBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % themes.length;
+            applyTheme(currentIndex);
+        });
+    </script>
+    <script>
+      setTimeout(() => {
+        const flash = document.getElementById('flash-container');
+        if (flash) {
+          flash.remove();
+        }
+      }, 4000); // remove after 4s
+    </script>
+</body>
+</html>
