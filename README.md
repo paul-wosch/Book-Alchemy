@@ -79,6 +79,8 @@ This project is not intended for production use and will not be actively maintai
 ```
 .
 ├── .env                        # env vars (untracked)
+├── .gitattributes              # language stats (GitHub Linguist)
+├── .gitignore                  # ignore sensitive/generated files
 ├── LICENSE                     # MIT license
 ├── README.md                   # project documentation
 ├── requirements.txt            # Python dependencies
