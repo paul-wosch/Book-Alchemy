@@ -13,18 +13,17 @@
 
 ## 📑 Table of Contents  
 
-- [⚠️ Disclaimer](#-disclaimer)  
-- [📝 Description](#-description)  
-- [✨ Features](#-features)  
-- [🛠️ Tech Stack & Dependencies](#-tech-stack--dependencies)  
-- [📦 Key Dependencies](#-key-dependencies)  
-- [📁 Project Structure](#-project-structure)  
-- [🛠️ Development Setup](#-development-setup)  
-  - [🚀 Quick Start](#-quick-start)  
-  - [📖 Step‑by‑Step Guide](#-step-by-step-guide)  
-- [👥 Contributing](#-contributing)  
-- [🏷️ Badges](#-badges)  
-- [📄 License](#-license)  
+- [⚠️ Disclaimer](#disclaimer)  
+- [📝 Description](#description)  
+- [✨ Features](#features)  
+- [🛠️ Tech Stack & Dependencies](#tech-stack--dependencies)  
+- [📁 Project Structure](#project-structure)  
+- [🛠️ Development Setup](#development-setup)  
+  - [🚀 Quick Start](#quick-start)  
+  - [📖 Step‑by‑Step Guide](#step-by-step-guide)  
+- [👥 Contributing](#contributing)  
+- [🏷️ Badges](#badges)  
+- [📄 License](#license)  
 
 ---
 
