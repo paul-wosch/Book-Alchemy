@@ -1,7 +1,7 @@
 """Provide global constants for the project."""
-from dotenv import dotenv_values
 from pathlib import Path
 import secrets
+from dotenv import dotenv_values
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 
@@ -20,7 +20,6 @@ TEMPLATES_PATH = (PROJECT_ROOT / TEMPLATES_DIR).resolve()
 
 DOTENV_FILE = Path(".env")
 DOTENV_FILE_PATH = (PROJECT_ROOT / DOTENV_FILE).resolve()
-# if .env or key in .env does not exist create one using `secrets.token_hex(16)`
 FLASK_SECRET_KEY = dotenv_values(DOTENV_FILE_PATH).get("FLASK_SECRET_KEY", None)
 
 # Ensure .env exists and contains a secret key
