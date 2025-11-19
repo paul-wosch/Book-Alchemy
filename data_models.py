@@ -6,7 +6,7 @@ db = SQLAlchemy()
 class Author(db.Model):
     """Represent an author entity."""
     author_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False, unique=True)
     birth_date = db.Column(db.String)
     date_of_death = db.Column(db.String)
 

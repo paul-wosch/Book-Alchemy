@@ -1,5 +1,6 @@
 """Run the Flask app and provide routing."""
 from flask import Flask, request, render_template, redirect, url_for, flash
+from sqlalchemy.exc import IntegrityError
 from config import DB_FILE_PATH, FLASK_SECRET_KEY, STATIC_PATH, TEMPLATES_PATH
 from data_models import db, Author, Book
 
@@ -33,13 +34,24 @@ def single_book(book_id):
 def add_author():
     """Add a new author."""
     if request.method == "POST":
-        name = request.form["name"]
+        name = request.form["name"].strip()
         birthdate = request.form["birthdate"]
         date_of_death = request.form.get("date_of_death")
 
+        if name == "":
+            flash("Author name is required!", "error")
+            return redirect(url_for("add_author"))
+
         new_author = Author(name=name, birth_date=birthdate, date_of_death=date_of_death)
-        db.session.add(new_author)
-        db.session.commit()
+
+        try:
+            db.session.add(new_author)
+            db.session.commit()
+        except IntegrityError:
+            flash("Author already exists!", "error")
+            return redirect(url_for("add_author"))
+
+
         flash(f"Author '{new_author.name}' added successfully!", "success")
         return redirect(url_for("home"))
 
@@ -52,11 +64,20 @@ def update_author(author_id):
     author = Author.query.get_or_404(author_id)
 
     if request.method == "POST":
-        author.name = request.form["name"]
+        author.name = request.form["name"].strip()
         author.birth_date = request.form.get("birthdate")
         author.date_of_death = request.form.get("date_of_death")
 
-        db.session.commit()
+        if author.name == "":
+            flash("Author name is required!", "error")
+            return redirect(url_for("update_author", author_id=author_id))
+
+        try:
+            db.session.commit()
+        except IntegrityError:
+            flash("Author already exists!", "error")
+            return redirect(url_for("update_author", author_id=author_id))
+
         flash(f"Author '{author.name}' updated successfully!", "success")
         return redirect(url_for("home"))
 
