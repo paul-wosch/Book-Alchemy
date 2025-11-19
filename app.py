@@ -88,16 +88,28 @@ def update_author(author_id):
 def add_book():
     """Add a new book."""
     if request.method == "POST":
-        title = request.form["title"]
-        isbn = request.form["isbn"]
-        year = int(request.form["year"])
+        data_is_valid = True
+        title = request.form["title"].strip()
+        isbn = request.form["isbn"].strip()
+        year = request.form["year"]
         author_id = int(request.form["author_id"])
 
-        new_book = Book(title=title, isbn=isbn, publication_year=year, author_id=author_id)
-        db.session.add(new_book)
-        db.session.commit()
-        flash(f"Book '{new_book.title}' added successfully!", "success")
-        return redirect(url_for("single_book", book_id=new_book.book_id))
+        if title == "" or isbn == "" or year == "":
+            data_is_valid = False
+            flash("Title, ISBN and Year is required!", "error")
+
+        if data_is_valid == True:
+            year = int(year)
+            new_book = Book(title=title, isbn=isbn, publication_year=year, author_id=author_id)
+            try:
+                db.session.add(new_book)
+                db.session.commit()
+            except IntegrityError:
+                flash(f"A book with ISBN '{isbn}' already exists!", "error")
+                return redirect(url_for("add_book"))
+            else:
+                flash(f"Book '{new_book.title}' added successfully!", "success")
+                return redirect(url_for("single_book", book_id=new_book.book_id))
 
     authors = Author.query.all()
     return render_template("add_book.html", authors=authors)
@@ -109,16 +121,28 @@ def update_book(book_id):
     book = Book.query.get_or_404(book_id)
 
     if request.method == "POST":
-        book.title = request.form["title"]
-        book.isbn = request.form["isbn"]
+        data_is_valid = True
+        book.title = request.form["title"].strip()
+        book.isbn = request.form["isbn"].strip()
         year_str = request.form.get("year")
-        book.publication_year = int(year_str) if year_str else None
         author_id_str = request.form.get("author_id")
         book.author_id = int(author_id_str) if author_id_str else None
 
-        db.session.commit()
-        flash(f"Book '{book.title}' updated successfully!", "success")
-        return redirect(url_for("single_book", book_id=book.book_id))
+        if book.title == "" or book.isbn == "" or year_str == "":
+            data_is_valid = False
+            flash("Title, ISBN and Year is required!", "error")
+
+        if data_is_valid == True:
+            book.publication_year = int(year_str) if year_str else None
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+                flash(f"A book with ISBN '{book.isbn}' already exists!", "error")
+                return redirect(url_for("update_book", book_id=book_id))
+            else:
+                flash(f"Book '{book.title}' updated successfully!", "success")
+                return redirect(url_for("single_book", book_id=book.book_id))
 
     authors = Author.query.all()
     return render_template("update_book.html", book=book, authors=authors, subtitle="Update Book")
