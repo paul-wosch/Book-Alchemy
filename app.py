@@ -98,7 +98,7 @@ def add_book():
             data_is_valid = False
             flash("Title, ISBN and Year is required!", "error")
 
-        if data_is_valid == True:
+        if data_is_valid is True:
             year = int(year)
             new_book = Book(title=title, isbn=isbn, publication_year=year, author_id=author_id)
             try:
@@ -107,9 +107,8 @@ def add_book():
             except IntegrityError:
                 flash(f"A book with ISBN '{isbn}' already exists!", "error")
                 return redirect(url_for("add_book"))
-            else:
-                flash(f"Book '{new_book.title}' added successfully!", "success")
-                return redirect(url_for("single_book", book_id=new_book.book_id))
+            flash(f"Book '{new_book.title}' added successfully!", "success")
+            return redirect(url_for("single_book", book_id=new_book.book_id))
 
     authors = Author.query.all()
     return render_template("add_book.html", authors=authors)
@@ -132,7 +131,7 @@ def update_book(book_id):
             data_is_valid = False
             flash("Title, ISBN and Year is required!", "error")
 
-        if data_is_valid == True:
+        if data_is_valid is True:
             book.publication_year = int(year_str) if year_str else None
             try:
                 db.session.commit()
@@ -140,9 +139,8 @@ def update_book(book_id):
                 db.session.rollback()
                 flash(f"A book with ISBN '{book.isbn}' already exists!", "error")
                 return redirect(url_for("update_book", book_id=book_id))
-            else:
-                flash(f"Book '{book.title}' updated successfully!", "success")
-                return redirect(url_for("single_book", book_id=book.book_id))
+            flash(f"Book '{book.title}' updated successfully!", "success")
+            return redirect(url_for("single_book", book_id=book.book_id))
 
     authors = Author.query.all()
     return render_template("update_book.html", book=book, authors=authors, subtitle="Update Book")
